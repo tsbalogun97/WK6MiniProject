@@ -79,27 +79,53 @@ const playerOne = {
     console.log(`${currentAlien.ship} health is now ${currentAlien.hull} `);
   }
 }
+
+// call the function to check battle status
+
+
 // call the function to start the battle
 
 const startBattle = () => {
-  playerOne.attack() 
-  if(currentAlien.hull > 0 ) {
-    console.log(`${currentAlien.ship}, survived ${playerOne.ship}'s attack`);
-    currentAlien.attack()
+  battleStatus()
+  if(counter > 4) {
+    gameOver()
   }else{
-    console.log(`${currentAlien.ship}, ship explodes boom!!!`)
-    switchAlien()
+    playerOne.attack() 
+    if(currentAlien.hull > 0 ) {
+      console.log(`${currentAlien.ship}, survived ${playerOne.ship}'s attack`);
+      currentAlien.attack()
+    }else{
+      console.log(`${currentAlien.ship}, ship explodes boom!!!`)
+      switchAlien()
+    }
+
   }
+
 }
+// game over function
+const gameOver = () => {
+  alert('GAMEOVER')
+  location.reload() 
+// to reload the entire browser to restart the game
+
+}
+
 
 // swicth to the next alein
 
 const switchAlien = ()=> {
   counter++
-  currentAlien = alienShips[counter]
-  console.log(`%c a new alien is approaching at a fast pace ${currentAlien.ship}`, 'color:red');
-  battleStatus()
+  if(counter > 4) {
+    gameOver()
+  }else{
+    
+    currentAlien = alienShips[counter]
+    console.log(`%c a new alien is approaching at a fast pace ${currentAlien.ship}`, 'color:red; font-size: 15px;');
+    battleStatus()
+  }
+  
 }
+
 
 
 
@@ -191,11 +217,12 @@ console.log(currentAlien);
 const battleStatus = () =>{
   if(counter > 4) {
     console.log(`%c GAME OVER! ${playerOne.ship} wins`,'font-family: monospace; color: blue; font-size: 15px;');
+    gameOver()
   }else{
     console.log(`%c BUMMER! the fight rages on`, 'background-color: black; font-size: 20px' );
   }
-
 }
+
 
 
 
