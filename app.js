@@ -223,6 +223,17 @@ const battleStatus = () =>{
   }
 }
 
+// creating a retreat function
+const retreat =(who) => {
+  if(who === 'Uss Ship') {
+    alert('uss ship is retreating')
+  }else{
+    alert('Alien ship is retreating')
+  }
+  location.reload() 
+
+}
+
 
 
 
